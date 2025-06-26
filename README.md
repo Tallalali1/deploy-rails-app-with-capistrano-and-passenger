@@ -173,7 +173,43 @@ Before deploying, you need to add your SSH key to the server:
 
 ---
 
-## 7. Configure Nginx (deploy app before this step)
+
+---
+
+## 7. Setup PostgreSQL
+
+```sh
+sudo -i -u postgres
+createuser -s a_new_user
+psql
+ALTER USER a_new_user WITH PASSWORD 'your_secure_password';
+\q
+createdb yourappname_production -O a_new_user
+```
+
+Or:
+
+```sh
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+sudo systemctl start postgresql.service
+sudo -i -u postgres
+psql
+```
+
+Create user and database:
+
+```sh
+sudo -u postgres createuser --interactive
+sudo -u postgres psql
+psql=# alter user <username> with encrypted password '<password>';
+createdb sammy
+GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_new_username;
+```
+
+---
+
+## 8. Configure Nginx (deploy app before this step)
 
 ```sh
 sudo apt install nginx-full
@@ -217,41 +253,6 @@ Start Nginx:
 ```sh
 sudo service nginx start
 ```
-
----
-
-## 8. Setup PostgreSQL
-
-```sh
-sudo -i -u postgres
-createuser -s a_new_user
-psql
-ALTER USER a_new_user WITH PASSWORD 'your_secure_password';
-\q
-createdb yourappname_production -O a_new_user
-```
-
-Or:
-
-```sh
-sudo apt update
-sudo apt install postgresql postgresql-contrib
-sudo systemctl start postgresql.service
-sudo -i -u postgres
-psql
-```
-
-Create user and database:
-
-```sh
-sudo -u postgres createuser --interactive
-sudo -u postgres psql
-psql=# alter user <username> with encrypted password '<password>';
-createdb sammy
-GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_new_username;
-```
-
----
 
 ## 9. Deploy App with Capistrano
 
