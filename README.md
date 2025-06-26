@@ -155,14 +155,32 @@ passenger_ruby /home/deploy/.rbenv/shims/ruby;
 
 ---
 
-## 6. Configure Nginx (deploy app before this step)
+## 6. Add SSH Key to Server
+
+Before deploying, you need to add your SSH key to the server:
+
+1. Generate a new SSH key (press Enter for all prompts, no need to add anything):
+    ```sh
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    ```
+
+2. Display your public SSH key:
+    ```sh
+    cat ~/.ssh/id_rsa.pub
+    ```
+
+3. Copy the output and add it to your GitHub account (the one you use to deploy the app) under **Settings > SSH and GPG keys > New SSH key**.
+
+---
+
+## 7. Configure Nginx (deploy app before this step)
 
 ```sh
 sudo apt install nginx-full
 ```
-> ⚠️ **Before this step:**
+> ⚠️ **Before this step:**  
 > You should configure Capistrano and deploy your app to the server.  
-> If you need help setting up Capistrano on your local machine, see [this guide the setup-Capistrano-in-rails-app ](https://github.com/Tallalali1/setup-Capistrano-in-rails-app).
+> If you need help setting up Capistrano on your local machine, see [this guide the setup-Capistrano-in-rails-app](https://github.com/Tallalali1/setup-Capistrano-in-rails-app).
 
 ```sh
 sudo nano /etc/nginx/sites-enabled/default
@@ -202,7 +220,7 @@ sudo service nginx start
 
 ---
 
-## 7. Setup PostgreSQL
+## 8. Setup PostgreSQL
 
 ```sh
 sudo -i -u postgres
@@ -235,11 +253,11 @@ GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_new_username;
 
 ---
 
-## 8. Deploy App with Capistrano
+## 9. Deploy App with Capistrano
 
 > **Note:**  
-> If you did not deploy your app in step 6, then follow all these steps.  
-> Otherwise, just follow step 9 if needed.
+> If you did not deploy your app in step 7, then follow all these steps.  
+> Otherwise, just follow step 10 if needed.
 
 ```sh
 cap production deploy
@@ -247,7 +265,7 @@ cap production deploy
 
 ---
 
-## 9. Set Permissions (sometimes needed)
+## 10. Set Permissions (sometimes needed)
 
 ```sh
 sudo chmod 755 /home/ubuntu
@@ -259,7 +277,7 @@ sudo less /var/log/nginx/error.log
 
 ---
 
-## 10. Example Nginx Config for Production
+## 11. Example Nginx Config for Production
 
 ```sh
 cd /etc/nginx/sites-enabled
