@@ -17,12 +17,21 @@ sudo adduser deploy sudo
 
 ## 2. Install Dependencies
 
+First, run:
+
 ```sh
-first run
 sudo apt-get update
-then run
+```
+
+Then, install the required packages:
+
+```sh
 sudo apt-get install curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev dirmngr gnupg apt-transport-https ca-certificates nodejs yarn
-finally run
+```
+
+Finally, install the PostgreSQL development library:
+
+```sh
 sudo apt install libpq-dev
 ```
 
@@ -73,15 +82,20 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CA
 
 > **Note:** Only run the command that matches your server's Ubuntu version.
 
+First, choose the command for your Ubuntu version and run it:
+
 ```sh
-Step 1 choose command based on your ubuntu version
 # For Ubuntu 18.04 (bionic)
 sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger bionic main > /etc/apt/sources.list.d/passenger.list'
 # For Ubuntu 22.04 (jammy)
 sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger jammy main > /etc/apt/sources.list.d/passenger.list'
 # For Ubuntu 24.04 (noble)
 sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger noble main > /etc/apt/sources.list.d/passenger.list'
-Step 2 run the selected command
+```
+
+Then, update your package list:
+
+```sh
 sudo apt-get update
 ```
 
@@ -119,7 +133,7 @@ passenger_ruby /home/deploy/.rbenv/shims/ruby;
 ```sh
 sudo apt install nginx-full
 ```
-> **Before this step:**  
+> ⚠️ **Before this step:**
 > You should configure Capistrano and deploy your app to the server.  
 > If you need help setting up Capistrano, see [this guide](https://github.com/Tallalali1/setup-Capistrano-in-rails-app).
 
