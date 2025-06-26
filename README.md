@@ -185,6 +185,12 @@ sudo systemctl start postgresql.service
 sudo -i -u postgres
 psql
 ```
+If run correctly, use `\q` to quit psql and `exit` to quit the postgres user session.
+```sh
+\q
+exit
+```
+
 Make a user by:
 
 ```sh
