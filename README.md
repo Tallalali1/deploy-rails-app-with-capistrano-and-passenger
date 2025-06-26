@@ -135,7 +135,7 @@ sudo apt install nginx-full
 ```
 > ⚠️ **Before this step:**
 > You should configure Capistrano and deploy your app to the server.  
-> If you need help setting up Capistrano, see [this guide](https://github.com/Tallalali1/setup-Capistrano-in-rails-app).
+> If you need help setting up Capistrano on your local machine, see [this guide the setup-Capistrano-in-rails-app ](https://github.com/Tallalali1/setup-Capistrano-in-rails-app).
 
 ```sh
 sudo nano /etc/nginx/sites-enabled/default
