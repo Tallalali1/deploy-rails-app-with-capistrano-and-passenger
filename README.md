@@ -261,6 +261,11 @@ Start Nginx:
 ```sh
 sudo service nginx start
 ```
+you might need to stop and start nginx again by running
+```sh
+sudo service nginx stop
+sudo service nginx start
+```
 
 ## 9. Deploy App with Capistrano
 
