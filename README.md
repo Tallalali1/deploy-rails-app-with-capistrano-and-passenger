@@ -50,11 +50,38 @@ sudo apt install libpq-dev
     echo 'eval "$(rbenv init -)"' >> ~/.bashrc
     source ~/.bashrc
     ```
+
     > *Optional:* To manually verify, open your bash profile with:
     > ```sh
-    > sudo nano ~/.bashrc
+    > nano ~/.bashrc
     > ```
-    
+
+    To verify if rbenv is installed correctly, run:
+    ```sh
+    type rbenv
+    ```
+    The output should be similar to:
+    ```
+    rbenv is a function
+    rbenv ()
+    {
+        local command;
+        command="${1:-}";
+        if [ "$#" -gt 0 ]; then
+            shift;
+        fi;
+        case "$command" in
+            rehash | shell)
+                eval "$(rbenv "sh-$command" "$@")"
+            ;;
+            *)
+                command rbenv "$command" "$@"
+            ;;
+        esac
+    }
+    ```
+    This confirms rbenv is installed
+
 3. **Install Ruby (replace `3.3.0` with your required version if needed):**
     ```sh
     rbenv install 3.3.0
