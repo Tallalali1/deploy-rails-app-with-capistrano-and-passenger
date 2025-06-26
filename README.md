@@ -179,6 +179,15 @@ Before deploying, you need to add your SSH key to the server:
 ## 7. Setup PostgreSQL
 
 ```sh
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+sudo systemctl start postgresql.service
+sudo -i -u postgres
+psql
+```
+Make a user by:
+
+```sh
 sudo -i -u postgres
 createuser -s a_new_user
 psql
@@ -189,13 +198,6 @@ createdb yourappname_production -O a_new_user
 
 Or:
 
-```sh
-sudo apt update
-sudo apt install postgresql postgresql-contrib
-sudo systemctl start postgresql.service
-sudo -i -u postgres
-psql
-```
 
 Create user and database:
 
